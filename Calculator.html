@@ -1,0 +1,185 @@
+<html>
+    <head>
+         <style>
+              
+.papa {
+width: 300px;
+height: 400px;
+margin: 0px auto;
+}
+#obj{
+background-color:aqua;
+color:black;
+display:flex;
+justify-content:space-around;
+}
+#dd{
+color:red;
+}
+
+#kk{
+color:blue;
+}
+#answer {
+height: 30%;
+width: 100%;
+color:white;
+text-align:right;
+font-size:50px;
+border-bottom: 2px solid black;
+background-color: saddlebrown;
+}
+#idi {
+    height: 30%;
+    width: 100%;
+    color:white;
+    text-align:right;
+    font-size:50px;
+    border-bottom: 2px solid black;
+    background-color: saddlebrown;
+    }
+.firstflor,.secondflor,.thrdflor,.fourflor,.fiveflor {
+display: flex;
+}
+
+#AC, #havasar{
+width: 50%;
+height: 60px;
+background-color: deeppink;
+
+}
+#one,#two, #tree,#multiply,#four,#five,#six,#plus,#sevan,#eit,#nine,#minus,#DEL,#division,#zro {
+width: 25%;
+height: 60px;
+
+}
+#ket{
+font-size:60px;
+width: 25%;
+height: 60px;
+text-align:center;
+}
+#gg{
+display:flex;
+justify-content:space-around;
+}
+
+         </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+	   <div class="papa">
+            <input id="answer" type="text" value="0">
+            <div class="firstflor">
+                 <button id="AC" onclick="ac()">AC</button>
+                 <button id="DEL" onclick="del()">DEL</button>
+                 <button id="division" onclick="nermucel('/')">/</button>
+            </div>
+            <div class="secondflor">
+                 <button id="one" onclick="nermucel(1)">1</button>
+                 <button id="two" onclick="nermucel(2)">2</button>
+                 <button id="tree" onclick="nermucel(3)" >3</button>
+                 <button id="multiply" onclick="nermucel('*')">*</button>
+            </div>
+             <div class="thrdflor">
+                  <button id="five" onclick="nermucel(4)">4</button>
+				  <button id="four" onclick="nermucel(5)">5</button>
+                  <button id="six" onclick="nermucel(6)">6</button>
+                  <button id="plus" onclick="nermucel('+')">+</button>
+            </div>
+             <div class="fourflor">
+                  <button id="sevan" onclick="nermucel(7)">7</button>
+                  <button id="eit" onclick="nermucel(8)">8</button>
+                  <button id="nine" onclick="nermucel(9)">9</button>
+                  <button id="minus" onclick="nermucel('-')">-</button>
+            </div>
+            <div class="fiveflor">
+                 <button id="ket" onclick="nermucel('.')">.</button>
+                 <button id="zro" onclick="nermucel(0)">0</button>
+                 <button id="havasar" onclick="havasar()">=</button>
+            </div>
+        </div>
+        <br>
+        <br>
+		<input id="idi" type="text" value="">
+        <script>
+             		var text = '';
+		var t = 0;
+		var g = 0;
+		
+		$.each(arr,function (i){
+		
+			$.each(arr[i],function (name, value){
+			if (typeof value != 'object'){
+			t = '<div class = "mejin'+i+'">' + '</div>';
+			text += name + ' ' + value + '<br>';
+			}
+			
+			if (typeof value == 'object'){
+				$.each(value, function(key,val){
+			    text += name + ' ' + val + '<br>';
+				})
+			}
+			
+			
+			})
+
+			$('#obj').append(t);
+			$('.mejin'+i).append(text);
+			text = '';
+		})
+		
+		
+		
+		
+		
+		function nermucel(num){
+		var menu = document.getElementById('answer');
+		var nshan = menu.value.slice(-1);
+			if(num==0 && menu.value == "0"){
+			menu.value="0";
+			}
+				if(menu.value == '0' && (num=='+'|| num=='-'||num=='*'|| num=='/') ){
+						menu.value = menu.value + num;
+				}
+				else if(num == '.'){
+					menu.value = menu.value + num;
+				}
+			else if (menu.value == "0"){
+				menu.value = num;
+			}
+			else {
+				menu.value = menu.value + num;
+			}
+			if ((nshan=="." || nshan=="+" || nshan=="-" || nshan=="*" || nshan=="/") && (num=='+'|| num=='-'||num=='*'|| num=='/' || num=='.') ){
+				Del();
+				menu.value = menu.value + num;
+			}
+		}
+        function havasar(){
+            var menu = document.getElementById('answer');
+            var answer = document.getElementById('idi');
+            answer.value = answer.value + 'ans' + ' = ' + eval(menu.value) + '   ';
+            menu.value = "0";
+	    }
+	    function del(){
+		  var menu = document.getElementById('answer');
+		  
+		  if (menu.value.length == 1){
+		  menu.value = '0';
+		  }
+		  else {
+		  menu.value = menu.value.substring(0,menu.value.length-1);
+		  }
+		}
+		  function ac(){
+		  var menu = document.getElementById('answer');
+		  menu.value = '0';
+		}
+		function Del(){
+		  var menu = document.getElementById('answer');
+		  menu.value = menu.value.substring(0,menu.value.length-2);
+        }
+        </script>
+    </body>
+</html
